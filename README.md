@@ -1,121 +1,182 @@
-# AI Stylish Wardrobe
+AI Stylish Wardrobe
 
-A modern React frontend application for managing your wardrobe. Upload pictures of your clothes, view them in a beautiful grid gallery, and create outfits (coming soon).
+A modern React application for managing your wardrobe. Upload pictures of your clothes, organize them into a clean gallery, and create outfits. This project is built as part of a minor project assignment.
 
-## Features
+Features
 
-- 🔐 User authentication (Login & Register pages)
-- 📸 Upload and manage clothing images
-- 🖼️ Grid gallery view of all uploaded clothes
-- 🎨 Modern, responsive design with Tailwind CSS
-- 🧭 React Router for seamless navigation
+User authentication (Login & Register pages)
 
-## Tech Stack
+Upload and manage clothing items
 
-- **React 18** - UI library
-- **React Router DOM** - Navigation
-- **Tailwind CSS** - Styling
-- **Vite** - Build tool
+Local image preview using Object URLs
 
-## Project Structure
+Clothing gallery with responsive layout
 
-```
-ai-wardrobe/
-├── src/
+Create outfits from selected clothing items
+
+Persistent storage using LocalStorage (temporary until backend integration)
+
+Modern UI styled with Tailwind CSS
+
+Client-side routing with React Router
+
+Tech Stack
+
+React 18 — Component-based UI
+
+React Router DOM — Navigation
+
+Tailwind CSS — Styling
+
+Vite — Build tool
+
+LocalStorage — Temporary data persistence
+
+Project Structure
+minor-project/
+│── src/
 │   ├── pages/
-│   │   ├── Login.jsx       # Login page component
-│   │   ├── Register.jsx    # Registration page component
-│   │   └── Home.jsx        # Main dashboard with upload & gallery
-│   ├── App.jsx             # Main app component with routing
-│   ├── main.jsx            # Entry point
-│   └── index.css           # Tailwind CSS imports
-├── index.html              # HTML template
-├── package.json            # Dependencies
-├── vite.config.js          # Vite configuration
-├── tailwind.config.js      # Tailwind configuration
-└── postcss.config.js       # PostCSS configuration
-```
+│   │   ├── Login.jsx          # Login page
+│   │   ├── Register.jsx       # Registration page
+│   │   ├── Home.jsx           # Main dashboard with upload & gallery
+│   │   ├── AddItem.jsx        # Upload clothing item form
+│   │   ├── CreateOutfit.jsx   # Select items to create Outfit
+│   │   ├── MyOutfits.jsx      # Saved outfits page
+│   ├── components/
+│   │   └── UploadClothingPreview.jsx
+│   ├── api/
+│   │   └── upload.jsx
+│   ├── utils/
+│   │   └── storage.jsx
+│   ├── App.jsx                # App routing
+│   ├── main.jsx               # Entry point
+│   ├── index.css              # Global styles & Tailwind
+│── index.html
+│── package.json
+│── README.md
+│── vite.config.js
+│── tailwind.config.js
+│── postcss.config.js
+│── .gitignore
 
-## Getting Started
+Getting Started
+Prerequisites
 
-### Prerequisites
+Node.js v16 or later
 
-- Node.js (v16 or higher)
-- npm or yarn
+npm or yarn installed
 
-### Installation
+Installation
 
-1. Install dependencies:
-```bash
+Install dependencies:
+
 npm install
-```
 
-2. Start the development server:
-```bash
+
+Start development server:
+
 npm run dev
-```
 
-3. Open your browser and navigate to `http://localhost:5173`
 
-### Build for Production
+Open your browser and navigate to:
 
-```bash
+http://localhost:5173
+
+Build for Production
 npm run build
-```
 
-The production build will be in the `dist` folder.
 
-## Usage
+The production build will appear in the dist/ folder.
 
-### Authentication
+Usage
+Authentication
 
-- **Register**: Create a new account (simulated - any data works for now)
-- **Login**: Sign in with your credentials (simulated - any email/password works)
+Register: Create an account (simulated — any values work for now).
 
-### Managing Your Wardrobe
+Login: Sign in using any email/password.
 
-1. After logging in, you'll see the Home page
-2. Click "Upload Clothes" to select and upload images
-3. View all your uploaded clothes in the grid gallery
-4. Click "Remove" on any item to delete it
-5. Use "Create Outfit" button (placeholder for future backend integration)
+Managing Your Wardrobe
 
-## Current Status
+Log in to access the Home dashboard
 
-- ✅ Frontend UI complete
-- ✅ Authentication flow (simulated)
-- ✅ Image upload (local storage simulation)
-- ✅ Image gallery display
-- ⏳ Backend integration (pending)
-- ⏳ Database connection (pending)
-- ⏳ Create Outfit feature (pending)
+Click Upload Items to upload clothing images
 
-## Notes for Backend Team
+Your items appear in the wardrobe gallery
 
-The frontend is ready for backend integration. Here's what needs to be connected:
+Click Remove on an item to delete it
 
-1. **Authentication API endpoints**:
-   - POST `/api/auth/register` - User registration
-   - POST `/api/auth/login` - User login
-   - POST `/api/auth/logout` - User logout
+Creating Outfits
 
-2. **Clothing API endpoints**:
-   - GET `/api/clothes` - Fetch user's clothes
-   - POST `/api/clothes` - Upload new clothing item
-   - DELETE `/api/clothes/:id` - Delete clothing item
+Click Create Outfit in the navigation bar
 
-3. **Outfit API endpoints**:
-   - POST `/api/outfits` - Create new outfit
-   - GET `/api/outfits` - Fetch user's outfits
+Select required clothing categories:
 
-## Development
+At least 1 Top
 
-The app uses:
-- **Local state management** with React hooks (`useState`)
-- **LocalStorage** for authentication persistence (temporary)
-- **Object URLs** for image preview (temporary - will be replaced with backend URLs)
+At least 1 Bottom or 1 Dress
 
-## License
+At least 1 Accessory
+
+At least 1 Pair of Shoes
+
+Click Preview Outfit (simulation)
+
+Click Create Outfit (temporary — shows a "work in progress" alert)
+
+Created outfits are saved in My Outfits
+
+Current Status
+
+Frontend UI: Completed
+
+Authentication: Simulated
+
+Image Upload: LocalStorage-only (temporary)
+
+Gallery UI: Completed
+
+Create Outfit: Client-side version completed
+
+Backend Integration: Pending
+
+Database Setup: Pending
+
+Notes for Backend Team
+
+When backend integration begins, the following endpoints will be needed:
+
+1. Authentication
+
+POST /api/auth/register — Register new user
+
+POST /api/auth/login — Login user
+
+POST /api/auth/logout — Optional logout endpoint
+
+2. Clothing Items
+
+GET /api/clothes — Fetch user's clothing items
+
+POST /api/clothes — Upload new item
+
+DELETE /api/clothes/:id — Delete clothing item
+
+3. Outfits
+
+POST /api/outfits — Create a new outfit
+
+GET /api/outfits — Fetch user's saved outfits
+
+Development Notes
+
+State is handled using React hooks (useState, useEffect)
+
+Temporary persistence through browser LocalStorage
+
+Image previews use URL.createObjectURL
+
+Backend will eventually replace all temporary local data usage
+
+License
 
 This project is part of a minor project assignment.
-
