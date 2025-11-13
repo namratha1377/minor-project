@@ -2,104 +2,180 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom base styles */
+/* ---------------------------
+   Custom base styles (theme)
+   --------------------------- */
 @layer base {
+  html, body {
+    height: 100%;
+  }
+
   body {
     @apply text-gray-700 antialiased;
-    background-color: rgba(232, 213, 255, 0.3);
+    background: linear-gradient(180deg, rgba(232,213,255,0.18) 0%, rgba(255,213,232,0.10) 50%, rgba(255,232,213,0.06) 100%);
+    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   }
-  
+
   * {
     @apply transition-colors duration-200;
   }
+
+  /* small default for links */
+  a {
+    @apply text-gray-700 hover:text-gray-900;
+  }
 }
 
-/* Custom component styles */
+/* ---------------------------
+   Component styles (theme)
+   --------------------------- */
 @layer components {
+  /* Primary gradient button (rounded pill) */
   .btn-primary {
-    @apply text-gray-700 font-medium py-3 px-6 rounded-2xl shadow-sm hover:shadow-md transform hover:scale-[1.02] transition-all duration-300 active:scale-[0.98] border border-white/50;
-    background: linear-gradient(to right, #e8d5ff, #ffd5e8);
+    @apply inline-flex items-center justify-center gap-2 text-gray-800 font-semibold py-3 px-6 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-200;
+    background: linear-gradient(90deg, #e8d5ff 0%, #ffd5e8 50%, #ffe8d5 100%);
+    border: 1px solid rgba(255,255,255,0.55);
   }
-  
   .btn-primary:hover {
-    background: linear-gradient(to right, #ffd5e8, #ffe8d5);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
   }
-  
+  .btn-primary:active {
+    transform: translateY(0) scale(0.99);
+  }
+
+  /* Secondary button: soft glass */
   .btn-secondary {
-    @apply text-gray-700 font-medium py-3 px-6 rounded-2xl shadow-sm hover:shadow-md transform hover:scale-[1.02] transition-all duration-300 active:scale-[0.98] backdrop-blur-sm;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(232, 213, 255, 0.3);
+    @apply inline-flex items-center justify-center gap-2 text-gray-800 font-medium py-3 px-5 rounded-2xl shadow-sm focus:outline-none focus:ring-2;
+    background-color: rgba(255,255,255,0.72);
+    border: 1px solid rgba(232,213,255,0.28);
+    backdrop-filter: blur(6px);
   }
-  
   .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    border-color: rgba(232, 213, 255, 0.5);
+    background-color: rgba(255,255,255,0.92);
+    border-color: rgba(232,213,255,0.45);
+    transform: translateY(-1px);
   }
-  
+
+  /* Input fields */
   .input-field {
-    @apply w-full px-4 py-3 rounded-2xl focus:outline-none transition-all duration-200 placeholder:text-gray-400 backdrop-blur-sm;
-    border: 2px solid rgba(232, 213, 255, 0.4);
-    background-color: rgba(255, 255, 255, 0.8);
+    @apply w-full px-4 py-3 rounded-2xl focus:outline-none transition-all duration-200 placeholder:text-gray-400;
+    border: 2px solid rgba(232,213,255,0.36);
+    background-color: rgba(255,255,255,0.86);
+    color: #374151; /* text-gray-700 */
   }
-  
   .input-field:hover {
-    border-color: rgba(232, 213, 255, 0.6);
+    border-color: rgba(232,213,255,0.56);
   }
-  
   .input-field:focus {
-    border-color: rgba(232, 213, 255, 0.6);
-    box-shadow: 0 0 0 2px rgba(232, 213, 255, 0.5);
+    border-color: rgba(232,213,255,0.6);
+    box-shadow: 0 0 0 6px rgba(232,213,255,0.08);
   }
-  
+
+  /* Card styles */
   .card {
-    @apply backdrop-blur-sm rounded-3xl shadow-sm p-8 hover:shadow-md transition-all duration-300;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    @apply rounded-3xl p-6 shadow-sm transition-all duration-300;
+    background-color: rgba(255,255,255,0.72);
+    border: 1px solid rgba(255,255,255,0.6);
+    backdrop-filter: blur(6px);
   }
-  
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(16,24,40,0.06);
+  }
+
+  /* Glass-style card for forms */
   .glass-card {
-    @apply backdrop-blur-md rounded-3xl shadow-sm p-8;
-    background-color: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    @apply rounded-3xl p-6 shadow-sm transition-all duration-300;
+    background-color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.45);
+    backdrop-filter: blur(8px);
+  }
+
+  /* small pill */
+  .pill {
+    @apply inline-flex items-center gap-2 text-sm px-3 py-1 rounded-full;
+    background-color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.45);
+  }
+
+  /* subtle tag for empty-state icon container */
+  .empty-icon {
+    @apply inline-flex items-center justify-center w-24 h-24 rounded-3xl;
+    background: linear-gradient(135deg, rgba(232,213,255,0.45), rgba(255,213,232,0.35));
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+
+  /* tiny debug pre style (used in Home debug panel) */
+  .debug-pre {
+    @apply text-xs text-gray-700 whitespace-pre-wrap mt-2;
+    max-height: 300px;
+    overflow: auto;
+    background: rgba(255,255,255,0.7);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0,0,0,0.04);
   }
 }
 
-/* Custom animations */
+/* ---------------------------
+   Utilities & animations
+   --------------------------- */
 @layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  
-  .animate-slide-up {
-    animation: slideUp 0.5s ease-out;
-  }
-  
   @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  
   @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  
-  .animation-delay-2000 {
-    animation-delay: 2s;
+
+  .animate-fade-in {
+    animation: fadeIn 420ms cubic-bezier(.2,.9,.3,1) both;
   }
-  
-  .animation-delay-4000 {
-    animation-delay: 4s;
+
+  .animate-slide-up {
+    animation: slideUp 520ms cubic-bezier(.2,.9,.3,1) both;
+  }
+
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-4000 { animation-delay: 4s; }
+
+  /* small blob animation keyframes assumed in tailwind.config.js (blob) */
+  .animate-blob {
+    animation: blob 7s infinite;
   }
 }
 
+/* ---------------------------
+   Small helpers & accessibility
+   --------------------------- */
+
+/* disabled primary look */
+.btn-primary[disabled], .btn-primary:disabled {
+  opacity: 0.66;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* image rounding helpers for cards */
+.card img, .glass-card img {
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+
+/* ensure focus visible outlines are accessible */
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(168,85,247,0.08);
+}
+
+/* fallback small screens tweak */
+@media (max-width: 640px) {
+  .btn-primary, .btn-secondary {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
